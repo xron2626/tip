@@ -13,7 +13,7 @@ function NoneUserBoardWriteLogic({contentsRef,writeButtonRef,userNameRef,passwor
   let sessionId;
 
   // let domainUri = "http://localhost:8080";
-  let domainUri = "https://www.siteproject22.online";
+  let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
   let finalId;
   // jsx로 다 교체하면 코드 블럭이 안 꺠지므로 바꾸는게 좋을듯 
   useEffect(() => {

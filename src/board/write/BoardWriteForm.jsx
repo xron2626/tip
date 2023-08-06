@@ -5,7 +5,7 @@ import UserBoardWriteForm from "./UserBoardWriteForm";
 function BoardWriteForm() {
     const [isUserAccount, setIsUserAccount] = useState(null);
     // let domainUri = "http://localhost:8080"
-    let domainUri = "https://www.siteproject22.online";
+    let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
     useEffect(() => {
         getUserAccount();
     },[])

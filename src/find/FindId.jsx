@@ -5,7 +5,7 @@ function FindId() {
     const [timer, setTimer] = useState("00:00");
     const certificationCodeRef = useRef(null); 
     // const domainUri = "http://localhost:8080";
-    const domainUri = "https://www.siteproject22.online";
+    const domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
     let count = 181;
 
     let time;

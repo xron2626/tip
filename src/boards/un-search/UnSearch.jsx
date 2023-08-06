@@ -12,13 +12,13 @@ function UnSearch() {
   const [pageClassName, setPageClassName] = useState([`${styles.itema}`]);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [nonePageNumbers, setNonePageNumbers] = useState([]);
-  const [formUrl, setFormUrl] = useState("https://www.siteproject22.online/board/search");
+  const [formUrl, setFormUrl] = useState("https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app/board/search");
   let isNextButton = true;
 
   // api 받을 때 setBoards로 교체하면 될듯 
   const [condition, setCondition] = useState(true);
   // let domainUri = "http://localhost:8080";
-  let domainUri = "https://www.siteproject22.online";
+  let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
 
   let sessionId;
   let boardQuantity;

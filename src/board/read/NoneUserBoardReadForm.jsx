@@ -25,7 +25,7 @@ function NoneUserBoardReadForm() {
     let isAddCommentClick = false;
     let allCommentId = 1;
     // let domainUri = "http://localhost:8080";
-    let domainUri = "https://www.siteproject22.online";
+    let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
     useEffect(() => {
         setUrl().then(function(data) {
             sessionId = data;
