@@ -26,8 +26,8 @@ function UserBoardReadForm() {
 
     let isAddCommentClick = false;
     let allCommentId = 1;
-    let domainUri = "http://localhost:8080";
-    
+    // let domainUri = "http://localhost:8080";
+    let domainUri = "https://www.siteproject22.online";
     useEffect(() => {
         setUrl().then(function(data) {
             setSessionId(data);    
@@ -107,7 +107,7 @@ function UserBoardReadForm() {
                 "isVisited" : false,
             })
         }
-        return fetch("http://localhost:8080/alarm/none-user",alarmData).then(function(response) {
+        return fetch(domainUri+"/alarm/none-user",alarmData).then(function(response) {
             return response.text();
         })
     }
@@ -125,7 +125,7 @@ function UserBoardReadForm() {
                 "isVisited" : false
             })
         }
-        return fetch("http://localhost:8080/alarm/user",alarmData).then(function(response) {
+        return fetch(domainUri+"/alarm/user",alarmData).then(function(response) {
             return response.text();
         })
     }
@@ -184,7 +184,7 @@ function UserBoardReadForm() {
 
         client.connect({}, function(frame) {
             console.log('Connected: ' + frame);
-            client.subscribe('ws://http://localshot:8080/user/'+sessionId+'/queue/messages', function(message) {
+            client.subscribe(domainUri+'/user/'+sessionId+'/queue/messages', function(message) {
                 alert("새로운 글이 작성되었습니다");
             });
         });

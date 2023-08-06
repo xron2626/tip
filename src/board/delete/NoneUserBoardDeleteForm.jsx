@@ -2,7 +2,8 @@ import React, { useRef,useEffect, useState } from 'react';
 
 function NoneUserBoardDeleteForm() {
     const [password, setPassword] = useState('비밀번호');
-    let domainUri = "http://localhost:8080"
+    //let domainUri = "http://localhost:8080"
+    let domainUri = "https://www.siteproject22.online";
     function addDeleteLogic() {
         deleteBoard().then(function(response) {
             return response.text();

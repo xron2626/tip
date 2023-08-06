@@ -12,11 +12,14 @@ function UnSearch() {
   const [pageClassName, setPageClassName] = useState([`${styles.itema}`]);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [nonePageNumbers, setNonePageNumbers] = useState([]);
+  const [formUri, setFormUri] = useState("https://www.siteproject22.online/board/search");
   let isNextButton = true;
-  
+
   // api 받을 때 setBoards로 교체하면 될듯 
   const [condition, setCondition] = useState(true);
-  let domainUri = "http://localhost:8080";
+  // let domainUri = "http://localhost:8080";
+  let domainUri = "https://www.siteproject22.online";
+
   let sessionId;
   let boardQuantity;
   let pageQuantity;
@@ -267,7 +270,7 @@ let jwtTimeData = {
       </div>
       <section id={condition ? styles.section : styles2.section}>
         <div className={condition ? styles.bodyHeader : styles2.bodyHeader}>
-          <form action="http://localhost:8080/board/search" data-accept-charset="utf-8" method="get" id={condition ? styles.flex : styles2.flex} >
+          <form action="/board/search" data-accept-charset="utf-8" method="get" id={condition ? styles.flex : styles2.flex} >
             <input type="text" name="pageQuantity" defaultValue="1" hidden />
             <input type="text" name="boardQuantity" defaultValue="20" hidden />
             <input type="text" name="keyword" defaultValue="검색" id={condition ? styles.textarea : styles2.textarea} maxLength="255" onClick={searchScript} />

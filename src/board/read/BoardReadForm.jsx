@@ -4,7 +4,8 @@ import UserBoardReadForm from "./UserBoardReadForm";
 
 function BoardReadForm() {
     const [isUserAccount, setIsUserAccount] = useState(null);
-    let domainUri = "http://localhost:8080"
+    // let domainUri = "http://localhost:8080"
+    let domainUri = "https://www.siteproject22.online";
     useEffect(() => {
         getUserAccount();
     },[])

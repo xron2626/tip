@@ -5,7 +5,8 @@ import UserBoardEditForm from "./UserBoardEditForm";
 
 function BoardEditForm() {
     const [isUserAccount, setIsUserAccount] = useState(null);
-    let domainUri = "http://localhost:8080"
+    // let domainUri = "http://localhost:8080"
+    let domainUri = "https://www.siteproject22.online";
     useEffect(() => {
         getUserAccount();
     },[])

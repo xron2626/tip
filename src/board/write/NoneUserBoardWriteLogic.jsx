@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 // import NoneUserBoardWrtieUi from "./NoneUserBoardWriteUi";
 function NoneUserBoardWriteLogic({contentsRef,writeButtonRef,userNameRef,passwordRef,titleRef}) {
   // jsx로 다 교체하면 코드 블럭이 안 꺠지므로 바꾸는게 좋을듯 
-
+  let domainUri = "https://www.siteproject22.online";
   useEffect(() => {
     console.log(contentsRef);
     const script = document.createElement("script");
@@ -60,11 +60,11 @@ function saveGallery () {
     };
 
 
-    fetch("http://localhost:8080/edit/api", requestData).then(function (
+    fetch(domainUri+"/edit/api", requestData).then(function (
       response
     ) {
       alert("저장되었습니다");
-      window.location.href ="http://localhost:8080?pageQuantity=1&boardQuantity=20";
+      window.location.href = domainUri+"?pageQuantity=1&boardQuantity=20";
       console.log(response);
     });
 }

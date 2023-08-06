@@ -12,8 +12,8 @@ function NoneUserBoardWriteLogic({contentsRef,writeButtonRef,userNameRef,passwor
   let condition = true;
   let sessionId;
 
-  let domainUri = "http://localhost:8080";
-
+  // let domainUri = "http://localhost:8080";
+  let domainUri = "https://www.siteproject22.online";
   let finalId;
   // jsx로 다 교체하면 코드 블럭이 안 꺠지므로 바꾸는게 좋을듯 
   useEffect(() => {
@@ -47,7 +47,7 @@ function NoneUserBoardWriteLogic({contentsRef,writeButtonRef,userNameRef,passwor
             console.log("condition :  "+ condition)
             condition = false;
             CKEDITOR.replace(contentsRef.current, {
-              filebrowserUploadUrl: "http://localhost:8080/image/upload/"+finalId,
+              filebrowserUploadUrl: domainUri+"/image/upload/"+finalId,
               font_names:
                 "맑은 고딕/Malgun Gothic;굴림/Gulim;돋움/Dotum;바탕/Batang;궁서/Gungsuh;Arial/Arial;Comic Sans MS/Comic Sans MS;Courier New/Courier New;Georgia/Georgia;Lucida Sans Unicode/Lucida Sans Unicode;Tahoma/Tahoma;Times New Roman/Times New Roman;MS Mincho/MS Mincho;Trebuchet MS/Trebuchet MS;Verdana/Verdana",
               font_defaultLabel: "맑은 고딕/Malgun Gothic",
@@ -158,9 +158,9 @@ function saveGallery () {
     };
 
 
-    fetch("http://localhost:8080/board/none-user", requestData).then(function (response) {
+    fetch(domainUri+"/board/none-user", requestData).then(function (response) {
       alert("저장되었습니다");
-      window.location.href ="http://localhost:8080?pageQuantity=1&boardQuantity=20";
+      window.location.href=domainUri+"?pageQuantity=1&boardQuantity=20";
       console.log(response);
     });
 }

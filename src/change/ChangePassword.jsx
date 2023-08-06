@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 
 function ChangePassword() {
-    let domainUri = "http://localhost:8080";
+    // let domainUri = "http://localhost:8080";
+    const domainUri = "https://www.siteproject22.online";
     const emailRef = useRef(null);
     const [timer, setTimer] = useState("00:00");
     const certificationCodeRef = useRef(null); 
