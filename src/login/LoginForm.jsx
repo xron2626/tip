@@ -1,11 +1,13 @@
 
-import { useState } from "react";
+
 import styles from"./LoginForm.module.css"
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function LoginForm() {
-
+    const [googleOauthUrl, setGoogleOauthUrl] = useState("https://www.siteproject22.online/oauth2/authorization/google");
+    const [naverOauthUrl, setNaverOauthUrl] = useState("https://www.siteproject22.online/oauth2/authorization/naver");
+    const [loginUrL, setLoginUrL] = useState("https://www.siteproject22.online/oauth2/authorization/naver");
 
     const erasePassword = () => {         
         console.log(passwordClass)
@@ -52,7 +54,7 @@ function LoginForm() {
         <div id={styles.check}>
             <p id={styles.loginText}>LOGIN</p>
         </div>
-        <form action="http://localhost:8080/login_proc" method="post"  data-accept-charset="UTF-8" id="loginButton">
+        <form action={loginUrL} method="post"  data-accept-charset="UTF-8" id="loginButton">
             <input type="text" id={styles.id}  name="username" value={username}   className={usernameClass}
             onClick={eraseUsername} onChange={changeUsername}/>
             <input type={passwordType} id={styles.password} name="password" value={password}  className={passwordClass}
@@ -70,10 +72,10 @@ function LoginForm() {
         </div>
 
         <div className={styles.panel} id={styles.naver}>
-            <a href="http://localhost:8080/oauth2/authorization/naver">네이버 로그인</a>
+            <a href={naverOauthUrl}>네이버 로그인</a>
         </div>
         <div className={styles.panel} id={styles.google}>
-            <a href="http://localhost:8080/oauth2/authorization/google">google 로그인</a>
+            <a href={googleOauthUrl}>google 로그인</a>
         </div>
 
     </div>

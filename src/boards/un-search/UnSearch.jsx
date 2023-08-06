@@ -12,7 +12,7 @@ function UnSearch() {
   const [pageClassName, setPageClassName] = useState([`${styles.itema}`]);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [nonePageNumbers, setNonePageNumbers] = useState([]);
-  const [formUri, setFormUri] = useState("https://www.siteproject22.online/board/search");
+  const [formUrl, setFormUrl] = useState("https://www.siteproject22.online/board/search");
   let isNextButton = true;
 
   // api 받을 때 setBoards로 교체하면 될듯 
