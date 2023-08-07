@@ -360,56 +360,6 @@
     width: 2cm;
 }
 
-th {
-    border-top: 4px solid black;
-    border-bottom: 2px solid black;
-}
-
-table {
-    position: relative;
-    text-align: center;
-    border-spacing: 0px;
-    width: 100%;
-
-    table-layout: fixed;
-    writing-mode: horizontal-tb;
-
-
-}
-
-td {
-    border-bottom: 2px solid black;
-}
-
-.th-id {
-    width: 15%;
-    background-color: pink;
-}
-
-.th-title {
-    width: 30%;
-    background-color: aqua;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.th-author {
-    width: 20%;
-    background-color: aquamarine;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.th-date {
-    width: 25%;
-    background-color: pink;
-}
-
-tr {
-    height: 1cm;
-
-}
-
 #aside {
     position: relative;
     width: 26%;

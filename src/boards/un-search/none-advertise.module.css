@@ -7,7 +7,7 @@ none-advertise-boards.css 값이 어떤 게 영향이 갈지 몰라서 이전 �
     height: 2cm;
 
 }
-aside {
+#aside {
     left:0;
 }
 .area21{
@@ -229,7 +229,7 @@ tr {
 }
 
 
-footer {
+#footer {
     position: relative;
     margin: 0px;
     padding: 0px;
@@ -377,7 +377,7 @@ footer {
 
 }
 @media (max-width: 1128px) {
-    aside {
+    #aside {
         position: relative;
         width: 0%;
         height: 0;
@@ -434,7 +434,7 @@ footer {
         width: 0;
         height: 0;
     }
-    footer{
+    #footer{
         width:100%;
     }
 

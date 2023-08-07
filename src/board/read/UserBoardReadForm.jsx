@@ -123,7 +123,9 @@ function UserBoardReadForm() {
                 "summaryCommentContent": summaryCommentContent,
                 "commentWriter" : commentWriter,
                 "isVisited" : false
-            })
+            }),
+            credentials: 'include'
+
         }
         return fetch(domainUri+"/alarm/user",alarmData).then(function(response) {
             return response.text();
@@ -156,7 +158,8 @@ function UserBoardReadForm() {
             body: JSON.stringify({
             "userId":sessionId,
             "content":commentContentRef.current.value
-        })
+        }),
+        credentials: 'include'
     }
 
     fetch(url,data).then(function x(response){

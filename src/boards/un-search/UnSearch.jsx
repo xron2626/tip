@@ -20,7 +20,7 @@ function UnSearch() {
   // let domainUri = "http://localhost:8080";
   let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
 
-  let sessionId;
+  
   let boardQuantity;
   let pageQuantity;
   const searchScript = (e) => {
@@ -36,9 +36,7 @@ function UnSearch() {
 
   useEffect(() => {
     setUrl().then(function(data) {
-      sessionId = data;
-    }).then(function() {
-      connect();
+      connect(data);
     })
   }, []);
 
@@ -57,7 +55,7 @@ function UnSearch() {
     boardQuantity = getBoardQuantity();
     window.location.href = "/?pageQuantity="+e.target.textContent+"&boardQuantity="+boardQuantity;
   }
-  function connect() {
+  function connect(sessionId) {
     const socket = new SockJS(domainUri+'/my-websocket-endpoint');
     let stompClient = Stomp.over(socket);
     console.log(socket);

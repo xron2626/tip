@@ -351,52 +351,6 @@ Header {
     width: 2cm;
 }
 
-th {
-    border-top: 4px solid black;
-    border-bottom: 2px solid black;
-}
-
-table {
-    position: relative;
-    text-align: center;
-    border-spacing: 0px;
-    width: 100%;
-
-    table-layout: fixed;
-    writing-mode: horizontal-tb;
-
-
-}
-
-td {
-    border-bottom: 2px solid black;
-}
-
-.th-id {
-    width: 15%;
-    background-color: pink;
-}
-
-.th-title {
-    width: 30%;
-    background-color: aqua;
-}
-
-.th-author {
-    width: 20%;
-    background-color: aquamarine;
-}
-
-.th-date {
-    width: 25%;
-    background-color: pink;
-}
-
-tr {
-    height: 1cm;
-
-}
-
 #aside {
     position: relative;
     width: 26%;
@@ -550,7 +504,7 @@ tr {
 
 }
 @media (max-width: 1166px) {
-    footer  {
+    #footer  {
         position: absolute;
         margin: 0px;
         padding: 0px;
@@ -768,7 +722,7 @@ tr {
         justify-content: space-between;
         width: 67%;
     }
-    section {
+    #section {
         position: absolute;
         top: 2.95cm;
         margin-top: 10px;
@@ -781,7 +735,7 @@ tr {
 
 }
 @media (max-width: 618px) {
-    footer {
+    #footer {
         position: absolute;
         margin: 0px;
         padding: 0px;
