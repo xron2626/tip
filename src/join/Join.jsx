@@ -11,15 +11,75 @@ function Join() {
     const idRef = useRef(null);
     const passwordRef = useRef(null);
     const passwordVerificationRef = useRef(null);
-    const transRef = useRef(null);
+    const nicknameRef = useRef(null);
+    const selectList = ["남성", "여성", "성별을 알리고 싶지 않습니다."];
+    const ageRef = useRef(null);
+    const phoneNumberRef = useRef(null);
 
-
+    const [Selected, setSelected] = useState("남성");
     const [timer, setTimer] = useState("00:00");
+    
     let count = 181;
     let time;
+    let isClick = false;
     let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
+
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
+  };
     const sendPost = () => {
-        
+        alert("trans = " + Selected);
+        if (isClick === true) return;
+        isClick = true;
+        let url = domainUri + "join";
+        let userId = idRef.current.value;
+        let nickname = nicknameRef.current.value;
+        let password = passwordRef.current.value;
+        let checkPassword = passwordVerificationRef.current.value;
+        let email = emailRef.current.value;
+        let emailCode = emailCodeRef.current.value;
+        let age = ageRef.current.value;
+        if(isNaN(age) || age==="") {
+            isClick = false;
+            alert("입력 값은 숫자이어야 합니다");
+            return;
+        }
+        let phoneNumber = document.getElementById('phoneNumber').value;
+        let trans = document.getElementById("trans").value;
+        if (password !== checkPassword) {
+            isClick = false;
+            alert("비밀번호가 다릅니다");
+            return;
+        }
+        let data = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                'userId': userId,
+                'nickname': nickname,
+                'password': password,
+                'email': email,
+                'trans': trans,
+                'emailCode': emailCode,
+                'age': age,
+                'phoneNumber': phoneNumber
+            }),
+
+        }
+        fetch(url, data).then(response => {
+            if (response.ok) {
+                window.location.href = "/login";
+            }
+            return response.json();
+
+        }).then(errorMsg => {
+            isClick = false;
+
+            alert(errorMsg.error);
+        })
     }
     const getEmail = () => {
         let params = {
@@ -44,7 +104,6 @@ function Join() {
             })
             .then(function (data) {
                 let email = data;
-                alert("trans = " + transRef.current.value);
                 console.log(email);
                 return;
 
@@ -128,34 +187,38 @@ function Join() {
                     <div className={styles.con}>
                         <div className={styles.as}>
                             <p className={styles.x}>id</p>
-                            <input type="text" id={styles.userId} placeholder="id" className={styles.flexBox} />
+                            <input type="text" id={styles.userId} placeholder="id" className={styles.flexBox} ref={idRef}/>
                         </div>
                     </div>
                     <div className={styles.con}>
                     <div className={styles.as}>
                             <p className={styles.x}>비밀번호</p>
-                            <input type="text" id={styles.password} placeholder="비밀번호" className={styles.flexBox}/>
+                            <input type="text" id={styles.password} placeholder="비밀번호" className={styles.flexBox} 
+                            ref={passwordRef}/>
                         </div>
                     </div>
                     <div className={styles.con}>
                     <div className={styles.as}>
                             <p className={styles.x}>비밀번호 확인</p>
-                            <input type="text" id={styles.checkPassword} placeholder="비밀번호 확인" className={styles.flexBox}/>
+                            <input type="text" id={styles.checkPassword} placeholder="비밀번호 확인" className={styles.flexBox}
+                            ref={passwordVerificationRef}/>
                         </div>
                     </div>
                     <div className={styles.con}>
                     <div className={styles.as}>
                             <p className={styles.x}>닉네임</p>
-                            <input type="text" id='nickname'placeholder="닉네임" className={styles.flexBox}/>
+                            <input type="text" id='nickname'placeholder="닉네임" className={styles.flexBox} ref={nicknameRef}/>
                         </div>
                     </div>
                     <div className={styles.con}>
                     <div className={styles.as}>
-                            <p className={styles.x} ref={transRef}>성별</p>
-                            <select id='trans' defaultValue="1" className={styles.flexBox}>
-                                <option value='1'>남성</option>
-                                <option value='2'>여성</option>
-                                <option value='3'>성별을 알리고 싶지 않습니다.</option>
+                            <p className={styles.x} >성별</p>
+                            <select id={styles.trans} onChange={handleSelect} value={Selected}>
+                                {selectList.map((item) => (
+                                    <option value={item} key={item}>
+                                        {item}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                     </div>
@@ -165,31 +228,31 @@ function Join() {
                             <div className={styles.con3}>
                                 <input type="text" placeholder="email" id={styles.userEmail} className={styles.flexBox} ref={emailRef}/>
                                 <input type="button" value="인증 버튼" id={styles.checkUserEmailButton} className="inline-flex-1"
-                                 onClick={getEmail}/>
+                                 onClick={getEmail} ref={emailRef}/>
                             </div>
                         </div>
                     </div>
                     <div className={styles.con}>
                     <div className={styles.as}>
                             <p className={styles.x}>이메일 인증코드</p>
-                            <input type="text" id={styles.checkEmail} className={styles.flexBox} placeholder="인증 코드"/>
+                            <input type="text" id={styles.checkEmail} className={styles.flexBox} placeholder="인증 코드" ref={emailCodeRef}/>
                             <p id={styles.timer}>{timer}</p>
                         </div>
                     </div>
                     <div className={styles.con}>
                     <div className={styles.as}>
                             <p className={styles.x}>나이</p>
-                            <input type="text" placeholder="나이" id={styles.age} className={styles.flexBox}/>
+                            <input type="text" placeholder="나이" id={styles.age} className={styles.flexBox} ref={ageRef}/>
                         </div>
                     </div>    
                     <div className={styles.con}>
                     <div className={styles.as}>
                             <p className={styles.x}>전화번호</p>
-                            <input type="text" placeholder="전화번호" id={styles.phoneNumber} className={styles.flexBox}/>
+                            <input type="text" placeholder="전화번호" id={styles.phoneNumber} className={styles.flexBox} ref={phoneNumberRef}/>
                         </div>
                     </div>
                     <div className={styles.con}>
-                        <button id={styles.joinButton}>회원가입</button>
+                        <button id={styles.joinButton} onClick={sendPost}>회원가입</button>
                     </div>
                 </article>
             </section>  
