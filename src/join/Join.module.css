@@ -148,7 +148,9 @@
 .as3 {
     margin-left: -30px;
 }
-
+.trans {
+    width: 200px;
+}
 
 
 #joinButton {

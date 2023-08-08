@@ -212,7 +212,7 @@ function Join() {
                     </div>
                     <div className={styles.con4}>
                         <div className={styles.as3}>
-                            <p className={styles.x2} >성별</p>
+                            <p className={styles.x} >성별</p>
                             <select id={styles.trans} onChange={handleSelect} value={Selected}>
                                 {selectList.map((item) => (
                                     <option value={item} key={item}>
@@ -222,10 +222,10 @@ function Join() {
                             </select>
                         </div>
                     </div>
-                    <div className={styles.con}>
+                    <div className={styles.con3}>
                     <div className={styles.as2}>
                             <p className={styles.x}>이메일</p>
-                            <div className={styles.con3}>
+                            <div>
                                 <input type="text" placeholder="email" id={styles.userEmail} className={styles.flexBox} ref={emailRef}/>
                                 <input type="button" value="인증 버튼" id={styles.checkUserEmailButton} className="inline-flex-1"
                                  onClick={getEmail} ref={emailRef}/>
