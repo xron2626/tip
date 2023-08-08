@@ -111,8 +111,18 @@
     justify-content: space-evenly;
     /*margin-left:50%;*/
 }
+.con4 {
+    height: 2cm;
+    display: flex;
+    justify-content: space-evenly;
+    
+    
+}
 .con3 {
-    /*margin-left: -10px;*/
+    height: 2cm;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: -10px;
 }
 .flexBox {
     height:1cm;
@@ -135,6 +145,12 @@
 .as2 {
     margin-left: 79px;
 }
+.as3 {
+    margin-left: -30px;
+}
+
+
+
 #joinButton {
     width:3cm;
     height:1cm;

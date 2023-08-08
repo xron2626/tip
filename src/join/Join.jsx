@@ -210,9 +210,9 @@ function Join() {
                             <input type="text" id='nickname'placeholder="닉네임" className={styles.flexBox} ref={nicknameRef}/>
                         </div>
                     </div>
-                    <div className={styles.con}>
-                    <div className={styles.as}>
-                            <p className={styles.x} >성별</p>
+                    <div className={styles.con4}>
+                        <div className={styles.as3}>
+                            <p className={styles.x2} >성별</p>
                             <select id={styles.trans} onChange={handleSelect} value={Selected}>
                                 {selectList.map((item) => (
                                     <option value={item} key={item}>

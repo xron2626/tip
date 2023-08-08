@@ -198,7 +198,6 @@ function Alarm() {
       }
       function getPageQuantity() {
         let isPageExistence = window.location.href.includes("?page=");
-        alert(window.location.href.split("?page=")[1]);
         if(isPageExistence === false) {
           pageQuantity = 1;
         }
