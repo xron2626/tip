@@ -112,18 +112,19 @@
     /*margin-left:50%;*/
 }
 .con4 {
-    height: 2cm;
+    height: 2.5cm;
     display: flex;
     justify-content: space-evenly;
     
     
 }
 .con3 {
-    height: 2cm;
+    height: 2.5cm;
     display: flex;
     justify-content: space-evenly;
-    margin-left: -10px;
+    margin-left: -3px;
 }
+
 .flexBox {
     height:1cm;
     width:5cm;
@@ -146,10 +147,12 @@
     margin-left: 79px;
 }
 .as3 {
-    margin-left: -30px;
+    margin-left: -3px;
+    
 }
-.trans {
+#trans {
     width: 200px;
+    height: 1cm;
 }
 
 
