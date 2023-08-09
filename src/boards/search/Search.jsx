@@ -13,8 +13,7 @@ function Search() {
             <div className={styles.area21}>
                 <input type="button" value="로그인" id={styles.loginBox} className={styles.box} style={{cursor:"pointer"}}
                     onClick={() =>window.location.href ='/login'}/>
-                <input type="button" value="회원가입" id={styles.joinBox} 
-                    className={`${styles.container} ${styles.box}`}  
+                <input type="button" value="회원가입" id={styles.joinBox} className={`${styles.container} ${styles.box}`}  
                     style={{cursor:"pointer"}}
                     onClick={() =>window.location.href ='/join'}/>
                 <img src="/image/homeicone8.png" width="80px" height="40px"alt="My github" id={styles.home}
@@ -26,7 +25,7 @@ function Search() {
             </div>
             <div className={styles.marginBox}>
                 <a href="https://github.com/xron2929">
-                    <img src="/image/github2.png" width="30px" alt="My github" id={styles.github}className={styles.container} />
+                    <img src="/image/github2.png" width="30px" alt="My github" id={styles.github} className={styles.container} />
                 </a>
                 <a href="https://hellocoding.tistory.com/">
                     <img src="/image/tistory2.png" width="40px" height="40px"alt="My github" id={styles.tistory} className={styles.container}  onClick={moveTistory} />
@@ -42,18 +41,18 @@ function Search() {
                     <input type="text" name="pageQuantity" value="1" hidden />
                     <input type="text" name="boardQuantity" value="20" hidden />
                     <input type="text" name="keyword" value="검색" id={styles.textarea} maxlength="255" onClick={searchScript} />
-                    <input type="submit" id={styles.searchButton} value="검색" style="cursor:hand" />
+                    <input type="submit" id={styles.searchButton} value="검색" style={{cursor:"pointer"}} />
                 </form>
-                <form action="http://localhost:8080/edit" accept-charset="utf-8" method="get" id="inline">
-                    <input type="submit" id="writeButton" value="글쓰기" style="cursor:hand" />
+                <form action="http://localhost:8080/edit" accept-charset="utf-8" method="get" id={styles.inline}>
+                    <input type="submit" id={styles.writeButton} value="글쓰기" style={{cursor:"pointer"}} />
                 </form>
             </div>
         </section>
-        <aside>
+        <aside id={styles.aside}>
             <img id={styles.advertisement} src="/image/inflearn.png" />
             <img id={styles.exit} src="/image/endend.png" style={{cursor:hand}} onclick={eraseAdvertisement} />
         </aside>
-        <footer>
+        <footer id={styles.footer}>
             <h2 id={styles.footerText}>간단한 게시판 만들기 - 정재광</h2>
         </footer>
     </div>
