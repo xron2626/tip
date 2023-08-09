@@ -12,6 +12,7 @@ import Alarm from './alarm/Alarm';
 import FindId from './find/FindId';
 import ChangePassword from './change/ChangePassword';
 import Join from './join/Join';
+import Search from './boards/search/Search';
 /*
 npx create-react-app 파일 이름 cd 파일 이름으로 접속 하고
 npm start로 접속하면 됨 
@@ -23,6 +24,7 @@ function App() {
       <BrowserRouter>
 				<Routes>
           <Route path="/" element={<UnSearch/>}></Route>
+          <Route path="/board/search" element={<Search/>}></Route>
           <Route path="/join" element={<Join/>}></Route>
           <Route path="/find/id" element={<FindId/>}></Route>
           <Route path="/change/password" element={<ChangePassword/>}></Route>
