@@ -62,14 +62,8 @@ function NoneUserBoardWriteLogic({contentsRef,writeButtonRef,userNameRef,passwor
 
         }
         });
-    return () => {
-      script.onload = function () {    
-        document.body.removeChild(script);
-        writeButtonRef.current.removeEventListener("click",saveGallery);
-      },[[]]
 
-    };
-  }, ); //useEffect []를 넣으면 한번만 작동하는데, script를 삽입하는 코드는 잘 되는지 확인한다고 2번 실행되서 두번 함수 작동해서 소멸자 쪽에 지움 
+  }, []); //useEffect []를 넣으면 한번만 작동하는데, script를 삽입하는 코드는 잘 되는지 확인한다고 2번 실행되서 두번 함수 작동해서 소멸자 쪽에 지움 
 
 
 let jwtTimeData = {
