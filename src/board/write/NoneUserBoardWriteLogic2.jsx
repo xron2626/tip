@@ -154,7 +154,7 @@ function saveGallery () {
 
     fetch(domainUri+"/board/none-user", requestData).then(function (response) {
       alert("저장되었습니다");
-      window.location.href=domainUri+"?pageQuantity=1&boardQuantity=20";
+      window.location.href="/?pageQuantity=1&boardQuantity=20";
       console.log(response);
     });
 }
