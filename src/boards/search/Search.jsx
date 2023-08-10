@@ -140,7 +140,7 @@ function Search() {
       // 2. 게시판에 데이터 파싱할 조건
       // 3. 게시판 페이지 안보이게 처리
       // pageQuantity,@RequestBody Long boardQuantity
-      let data = {
+      let requestData = {
           method: "GET",
           headers: {
               "Content-Type": "application/json",
@@ -151,14 +151,14 @@ function Search() {
       let currentSize = 1;
       let boardSize = 1;
       alert(keyword);
-      fetch(domainUri+"/board/data?pageQuantity="+pageQuantity+"&boardQuantity="+boardQuantity+"&keyword="+keyword, data).then(function (response) {
+      fetch(domainUri+"/board/data?pageQuantity="+pageQuantity+"&boardQuantity="+boardQuantity+"&keyword="+keyword, requestData).then(function (response) {
           return response.json();
       }).then(function (data) {
         if(data.length>0) {
           setBoards(data);
         }
         }).then(function() {
-          return fetch(domainUri+"/page?currentBoardPage="+pageQuantity+"&boardQuantity="+boardQuantity)
+          return fetch(domainUri+"/board/data/count?pageQuantity="+pageQuantity+"&boardQuantity="+boardQuantity+"&keyword="+keyword,requestData)
         }).then(function(data){
             return data.json();
         }).then(function(data) {
