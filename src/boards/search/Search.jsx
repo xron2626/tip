@@ -40,6 +40,7 @@ function Search() {
         setKeyWord(window.location.href.split('keyword=')[1]);
       setUrl().then(function(data) {
         connect(data);
+        bringData(window.location.href.split('keyword=')[1]);
       })
     }, []);
   
@@ -108,11 +109,8 @@ function Search() {
       window.location.href =  domainUri + "/jwt/expiration";
     }
   
-    useEffect(() => {
-      bringData();
-    },[])
     
-    function bringData() {
+    function bringData(keyword) {
   
       let item2 = document.getElementById("item2")
       let rows = [];
