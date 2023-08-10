@@ -296,10 +296,10 @@ function Search() {
               <tbody id={styles.tbody}>
               {boards.map((board, index) => (
   
-              <tr key={index} onClick= {() =>window.location.href="/boards/"+board.boardId}>
+              <tr key={index} onClick= {() =>window.location.href="/boards/"+board.id}>
                 <td className={styles.thId}>{getId(index+1)}</td>
                 <td className={styles.thTitle}>{board.title}</td>
-                <td className={styles.thAuthor}>{board.userName}</td>
+                <td className={styles.thAuthor}>{board.author}</td>
               <td className={styles.thDate}>{getCreatedDate(board)}</td>
             </tr>))}</tbody>
             </table>
