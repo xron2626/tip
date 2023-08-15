@@ -27,7 +27,8 @@ function NoneUserBoardDeleteForm() {
             body: JSON.stringify({
                 "password": password,
                 "boardId": boardId
-            })
+            }),
+            
         }
         return fetch(domainUri+"/board/none-user",requestData);
     }

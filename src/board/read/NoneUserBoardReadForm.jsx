@@ -43,8 +43,10 @@ function NoneUserBoardReadForm() {
         let url = domainUri+"/board/uuid?boardId="+boardId;
         console.log(url);
         let accountData = {
-            "method" : "GET"
+            "method" : "GET",
+            credentials: "include"
         }
+        
     
         return fetch(url,accountData).then(function findUsername(response) {
             return response.text();
@@ -98,7 +100,8 @@ function NoneUserBoardReadForm() {
                 "userName" : commentWriter,
                 "commentWriter":sessionId,
                 "isVisited" : false,
-            })
+            }),
+            credentials: "include"
         }
         return fetch(domainUri+"/alarm/none-user",alarmData).then(function(response) {
             return response.text();
@@ -116,7 +119,8 @@ function NoneUserBoardReadForm() {
                 "summaryCommentContent": summaryCommentContent,
                 "commentWriter" : commentWriter,
                 "isVisited" : false
-            })
+            }),
+            credentials: "include"
         }
         return fetch(domainUri+"/alarm/user",alarmData).then(function(response) {
             return response.text();
@@ -150,7 +154,9 @@ function NoneUserBoardReadForm() {
             "userId":usernameRef.current.textContent,
             "password":passwordRef.current.value,
             "content":commentContentRef.current.value
-        })
+        }),
+        credentials: "include"
+
     }
 
     fetch(url,data).then(function x(response){
@@ -205,6 +211,7 @@ function x() {
             Accept: "application/json",
             "Content-Type": "application/json"
         },
+        credentials: 'include'
     }
     fetch(url, requestData)
         .then(function (response) {
@@ -257,7 +264,8 @@ function addComment(isAddCommentClick) {
 
     let url = domainUri+"/comment/"+boardId+"?startId="+allCommentId;
     let data= {
-        method: 'get' // 통신할 방식
+        method: 'get', // 통신할 방식
+        credentials: 'include'
     }
     fetch(url,data).then(function (response) {
         return response.json();

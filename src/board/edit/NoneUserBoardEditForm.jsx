@@ -55,7 +55,8 @@ function NoneUserBoardEditForm() {
                 'username' : username,
                 'password' : password,
                 'isSecret' : isSecret
-        })
+        }),
+        credentials: 'include' 
     };
 
         return fetch(url, requestData)
@@ -110,6 +111,7 @@ useEffect(() => {
                 Accept: "application/json",
                 "Content-Type": "application/json"
             },
+            credentials: 'include'
     
         }
 
@@ -141,7 +143,7 @@ useEffect(() => {
       script.onload = function () {    
         document.body.removeChild(script);
         // writeButtonRef.current.removeEventListener("click",saveGallery);
-      },[[]]
+      },[]
 
     };
   }, );
