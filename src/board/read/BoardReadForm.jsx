@@ -20,6 +20,7 @@ function BoardReadForm() {
 
         }
         const url = domainUri+"/role";
+
         return fetch(url, params)
             .then(function (response) {
                 if(response.status===500) {
