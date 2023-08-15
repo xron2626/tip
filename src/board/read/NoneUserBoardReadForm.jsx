@@ -65,7 +65,8 @@ function NoneUserBoardReadForm() {
     }
     function isAdmin(userId) {
         let data= {
-            method: "GET"
+            method: "GET",
+            credentials: "include"
         };
         return fetch("/check/admin/"+userId,data).then(function (res) {
             return res.text();
@@ -311,7 +312,8 @@ function updateLikeCount() {
         },
         body: JSON.stringify({
             "joinStatusId": boardId,
-        })
+        }),
+        credentials: "include"
     }
     fetch(url,data).then(function(response) {
         return response.text();
@@ -333,6 +335,7 @@ function updateDisLikeCount() {
         body: JSON.stringify({
             "joinStatusId": boardId
         })
+        ,credentials: "include"
     }
     fetch(url,data).then(function(response) {
         return response.text();
