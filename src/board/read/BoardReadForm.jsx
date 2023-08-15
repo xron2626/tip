@@ -19,7 +19,6 @@ function BoardReadForm() {
             credentials: "include" // 이 옵션을 설정해야 쿠키가 요청에 포함됨
 
         }
-
         const url = domainUri+"/role";
         return fetch(url, params)
             .then(function (response) {
