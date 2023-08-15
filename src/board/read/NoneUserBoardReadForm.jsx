@@ -212,7 +212,7 @@ function x() {
             Accept: "application/json",
             "Content-Type": "application/json"
         },
-        credentials: 'include'
+        credentials: "include"
     }
     fetch(url, requestData)
         .then(function (response) {

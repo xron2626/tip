@@ -198,7 +198,7 @@ function UserBoardReadForm() {
         let url = domainUri +"/board/userAuthority?boardId="+boardId;
         let data = {
             "METHOD":"GET",
-            credentials: 'include'
+            credentials: "include"
         };
 
 
