@@ -4,8 +4,8 @@ import UserBoardReadForm from "./UserBoardReadForm";
 
 function BoardReadForm() {
     const [isUserAccount, setIsUserAccount] = useState(null);
-    // let domainUri = "http://localhost:8080"
-    let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
+    let domainUri = "http://localhost:8080"
+    // let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
     useEffect(() => {
         getUserAccount();
     },[])
