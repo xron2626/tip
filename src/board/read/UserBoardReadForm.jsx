@@ -27,7 +27,7 @@ function UserBoardReadForm() {
     let isAddCommentClick = false;
     let allCommentId = 1;
     // let domainUri = "http://localhost:8080";
-    let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
+    let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
     useEffect(() => {
         setUrl().then(function(data) {
             setSessionId(data);    

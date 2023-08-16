@@ -18,7 +18,7 @@ function UnSearch() {
   // api 받을 때 setBoards로 교체하면 될듯 
   const [condition, setCondition] = useState(true);
   // let domainUri = "http://localhost:8080";
-  let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
+  let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
 
   
   let boardQuantity;
