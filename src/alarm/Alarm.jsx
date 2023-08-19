@@ -15,8 +15,8 @@ function Alarm() {
   
   // api 받을 때 setBoards로 교체하면 될듯 
     const [condition, setCondition] = useState(true);
-    // let domainUri = "http://localhost:8080";
-    let domainUri = "https://www.siteproject22.online";
+    let domainUri = "http://localhost:8080";
+    // let domainUri = "https://www.siteproject22.online";
     let sessionId;
     let boardQuantity;
     let pageQuantity;
@@ -198,6 +198,7 @@ function Alarm() {
       }
       function getPageQuantity() {
         let isPageExistence = window.location.href.includes("?page=");
+
         if(isPageExistence === false) {
           pageQuantity = 1;
         }

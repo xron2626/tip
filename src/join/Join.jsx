@@ -22,8 +22,8 @@ function Join() {
     let count = 181;
     let time;
     let isClick = false;
-    let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
-
+    // let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
+    let domainUri = "http://localhost:3000/api";
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
