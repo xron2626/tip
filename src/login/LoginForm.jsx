@@ -5,9 +5,10 @@ import styles from"./LoginForm.module.css"
 import React, { useEffect, useState } from 'react';
 
 function LoginForm() {
-    const [googleOauthUrl, setGoogleOauthUrl] = useState("https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app/oauth2/authorization/google");
-    const [naverOauthUrl, setNaverOauthUrl] = useState("https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app/oauth2/authorization/naver");
-    const [loginUrL, setLoginUrL] = useState("https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app/login_proc");
+
+    const [googleOauthUrl, setGoogleOauthUrl] = useState("http://27.96.131.120:8080/oauth2/authorization/google");
+    const [naverOauthUrl, setNaverOauthUrl] = useState("http://27.96.131.120:8080/oauth2/authorization/naver");
+    const [loginUrL, setLoginUrL] = useState("http://27.96.131.120:8080/login_proc");
 
     const erasePassword = () => {         
         console.log(passwordClass)
