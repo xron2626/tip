@@ -7,7 +7,7 @@ import {Stomp} from '@stomp/stompjs';
 function UserBoardWriteLogic({contentsRef,writeButtonRef,username,setUsername,titleRef}) {
     let condition = true;
 
-    let domainUri = "http://localhost:3000/api";
+    let domainUri = "http://27.96.131.120:3001/api";
     // let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
     let sessionId;
     let finalId;

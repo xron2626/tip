@@ -12,7 +12,7 @@ import Header from "./Header";
 
 
 function NoneUserBoardEditForm() {
-    let domainUri = "http://localhost:3000/api";
+    let domainUri = "http://27.96.131.120:3001/api";
     // let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
     let condition = true;
     const [title, setTitle] = useState('');
