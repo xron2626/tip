@@ -12,7 +12,7 @@ function NoneUserBoardWriteLogic({contentsRef,writeButtonRef,userNameRef,passwor
   let condition = true;
   let sessionId;
 
-  let domainUri = "http://27.96.131.120:3001/api";
+  let domainUri = "http://27.96.131.120:8080";
   // let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
   let finalId;
   // jsx로 다 교체하면 코드 블럭이 안 꺠지므로 바꾸는게 좋을듯 

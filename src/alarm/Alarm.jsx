@@ -16,7 +16,7 @@ function Alarm() {
   // api 받을 때 setBoards로 교체하면 될듯 
     const [condition, setCondition] = useState(true);
     // let domainUri = "http://localhost:8080";
-    let domainUri = "http://27.96.131.120:3001/api";
+    let domainUri = "http://27.96.131.120:8080";
     // let domainUri = "https://www.siteproject22.online";
     let sessionId;
     let boardQuantity;
