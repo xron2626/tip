@@ -2,7 +2,8 @@ import React, { useRef,useEffect, useState } from 'react';
 
 function NoneUserBoardDeleteForm() {
     const [password, setPassword] = useState('비밀번호');
-    let domainUri = "http://27.96.131.120:8080";
+    // let domainUri = "http://27.96.131.120:8080";
+    let domainUri = "/api";
     // let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
 
     function addDeleteLogic() {

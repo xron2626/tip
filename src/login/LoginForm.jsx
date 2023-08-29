@@ -6,9 +6,9 @@ import React, { useEffect, useState } from 'react';
 
 function LoginForm() {
 
-    const [googleOauthUrl, setGoogleOauthUrl] = useState("http://27.96.131.120:8080/oauth2/authorization/google");
-    const [naverOauthUrl, setNaverOauthUrl] = useState("http://27.96.131.120:8080/oauth2/authorization/naver");
-    const [loginUrL, setLoginUrL] = useState("http://27.96.131.120:8080/login_proc");
+    const [googleOauthUrl, setGoogleOauthUrl] = useState("/api/oauth2/authorization/google");
+    const [naverOauthUrl, setNaverOauthUrl] = useState("/api/oauth2/authorization/naver");
+    const [loginUrL, setLoginUrL] = useState("/api/login_proc");
 
     const erasePassword = () => {         
         console.log(passwordClass)

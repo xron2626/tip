@@ -27,7 +27,8 @@ function UserBoardReadForm() {
     let isAddCommentClick = false;
     let allCommentId = 1;
     // let domainUri = "http://localhost:8080";
-    let domainUri = "http://27.96.131.120:8080";
+    // let domainUri = "http://27.96.131.120:8080";
+    let domainUri = "/api";
     useEffect(() => {
         setUrl().then(function(data) {
             setSessionId(data);    
