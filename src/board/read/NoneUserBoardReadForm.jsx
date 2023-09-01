@@ -183,7 +183,7 @@ function NoneUserBoardReadForm() {
     }
   
     function connect() {
-        const socket = new WebSocket('wss://siteproject22.online/api/my-websocket-endpoint');
+        const socket = new SockJS(domainUri+'/my-websocket-endpoint');
         const client = Stomp.over(socket);
 
         client.connect({}, function(frame) {
