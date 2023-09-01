@@ -61,7 +61,7 @@ function Search() {
       window.location.href = "/?pageQuantity="+e.target.textContent+"&boardQuantity="+boardQuantity;
     }
     function connect(sessionId) {
-      const socket = new SockJS(domainUri+'/my-websocket-endpoint');
+      const socket = new WebSocket('wss://siteproject22.online/api/my-websocket-endpoint');
       let stompClient = Stomp.over(socket);
       console.log(socket);
       console.log(stompClient);
@@ -73,7 +73,7 @@ function Search() {
       });
       // 이거 연결하는 동시에 queue/messages2도 같이 등록해서 알림 서비스 n개 만들어봐야될듯
       // ㅇㅇ..
-      const socket2 = new SockJS(domainUri+'/my-websocket-endpoint2');
+      const socket2 = new WebSocket('wss://siteproject22.online/api/my-websocket-endpoint2');
       let stompClient2 = Stomp.over(socket2);
       stompClient2.connect({}, function(frame) {
           console.log('Connected: ' + frame);
