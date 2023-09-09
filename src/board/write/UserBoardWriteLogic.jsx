@@ -8,7 +8,7 @@ function UserBoardWriteLogic({contentsRef,writeButtonRef,username,setUsername,ti
     let condition = true;
 
     // let domainUri = "http://27.96.131.120:8080";
-    let domainUri = "/api";
+    let domainUri = process.env.REACT_APP_API_URL;
     // let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
     let sessionId;
     let finalId;

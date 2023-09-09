@@ -11,9 +11,9 @@ import {Stomp} from '@stomp/stompjs';
 function NoneUserBoardWriteLogic({contentsRef,writeButtonRef,userNameRef,passwordRef,titleRef,password}) {
   let condition = true;
   let sessionId;
-
+  let domainUri = process.env.REACT_APP_API_URL;
   // let domainUri = "http://27.96.131.120:8080";
-  let domainUri = "/api";
+  
   // let domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
   let finalId;
   // jsx로 다 교체하면 코드 블럭이 안 꺠지므로 바꾸는게 좋을듯 
@@ -142,6 +142,7 @@ function saveGallery () {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+  
       },
       body: JSON.stringify({
         'id' : finalId,
@@ -149,7 +150,8 @@ function saveGallery () {
         'password' : requestPassword,
         'title' : requestTitle,
         'content' : CKEDITOR.instances[contentsRef.current.name].getData()
-      })
+      }),
+      credentials: "include"
     };
 
 

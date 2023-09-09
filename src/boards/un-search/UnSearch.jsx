@@ -18,7 +18,8 @@ function UnSearch() {
   // api 받을 때 setBoards로 교체하면 될듯 
   const [condition, setCondition] = useState(true);
   // let domainUri = "http://27.96.131.120:8080";
-  let domainUri = "/api";
+  let domainUri = process.env.REACT_APP_API_URL;
+  // REACT_APP_API_URL
   // let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
 
   
@@ -142,9 +143,8 @@ let jwtTimeData = {
     // pageQuantity,@RequestBody Long boardQuantity
     let data = {
         method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
+      
+        
     }
     let idNumber;
     let idData = (pageQuantity - 1) * boardQuantity + 1;
@@ -153,12 +153,13 @@ let jwtTimeData = {
 
     fetch(domainUri+"/boards?pageQuantity="+pageQuantity+"&boardQuantity="+boardQuantity, data).then(function (response) {
         return response.json();
-    }).then(function (data) {
-      if(data.length>0) {
-        setBoards(data);
+    }).then(function (responseData) {
+      if(responseData.length>0) {
+        setBoards(responseData);
+        
       }
       }).then(function() {
-        return fetch(domainUri+"/page?currentBoardPage="+pageQuantity+"&boardQuantity="+boardQuantity)
+        return fetch(domainUri+"/page?currentBoardPage="+pageQuantity+"&boardQuantity="+boardQuantity,data)
       }).then(function(data){
           return data.json();
       }).then(function(data) {

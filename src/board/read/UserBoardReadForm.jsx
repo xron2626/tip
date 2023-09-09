@@ -16,7 +16,7 @@ function UserBoardReadForm() {
     
 
     const commentContentRef = useRef(null);
-    const [boardWriterId, setBoardWriterId] = useState(null); 
+    const [boardWriterName, setBoardWriterName] = useState(null); 
 
     let likeCountNumber;
     let disLikeCountNumber;
@@ -28,7 +28,7 @@ function UserBoardReadForm() {
     let allCommentId = 1;
     // let domainUri = "http://localhost:8080";
     // let domainUri = "http://27.96.131.120:8080";
-    let domainUri = "/api";
+    let domainUri = process.env.REACT_APP_API_URL;
     useEffect(() => {
         setUrl().then(function(data) {
             setSessionId(data);    
@@ -64,7 +64,7 @@ function UserBoardReadForm() {
     }
     function isUser(commentWriter) {
 
-        if(boardWriterId.includes("_")) {
+        if(boardWriterName.includes("_")) {
             return true;
         }
         return isAdmin(commentWriter);
@@ -147,6 +147,12 @@ function UserBoardReadForm() {
         })
 
     }
+    
+    
+    function resize() {
+        commentContentRef.current.style.height = "1px";
+        commentContentRef.current.style.height = (12+commentContentRef.current.scrollHeight)+"px";
+    }
     const commentSubmit = () => {
         boardId = getBoardId();
         let url = domainUri+"/user/comment/"+boardId;
@@ -164,7 +170,7 @@ function UserBoardReadForm() {
     }
 
     fetch(url,data).then(function x(response){
-        return response.text();
+        return response.json();
     }).then(function(data) {
         //"http://localhost:8080/boards"+boardId;
         // 알림 서비스 추가
@@ -176,13 +182,8 @@ function UserBoardReadForm() {
     // return isAddCommentClick;
     };
 
-    
-    function resize() {
-        commentContentRef.current.style.height = "1px";
-        commentContentRef.current.style.height = (12+commentContentRef.current.scrollHeight)+"px";
-    }
-  
     function connect(sessionId) {
+        
         const socket = new SockJS(domainUri+'/my-websocket-endpoint');
         const client = Stomp.over(socket);
 
@@ -225,8 +226,8 @@ function UserBoardReadForm() {
         let requestData = {
             method: "GET",
             headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+                // Accept: "application/json",
+                // "Content-Type": "application/json"
             },
         }
         fetch(url, requestData)
@@ -239,7 +240,7 @@ function UserBoardReadForm() {
                 return response.json();
             })
             .then(function (datas) {
-                setBoardWriterId(datas["boardWriterId"]);
+                setBoardWriterName(datas["boardWriterName"]);
                 content = datas["contents"];
                 likeCountNumber = datas['likeCount'];
                 disLikeCountNumber = datas["disLikeCount"];

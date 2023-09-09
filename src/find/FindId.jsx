@@ -6,7 +6,7 @@ function FindId() {
     const certificationCodeRef = useRef(null); 
     // const domainUri = "http://localhost:8080";
     // const domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
-    let domainUri = "/api";
+    let domainUri = process.env.REACT_APP_API_URL;
     let count = 181;
     let time;
     const getEmail = () => {

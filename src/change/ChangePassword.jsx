@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 function ChangePassword() {
-    let domainUri = "http://27.96.131.120:3001/api";
+    let domainUri = process.env.REACT_APP_API_URL;
     // const domainUri = "https://port-0-changeproject-19k5ygi525lcw5y5kb.gksl2.cloudtype.app";
     const emailRef = useRef(null);
     const [timer, setTimer] = useState("00:00");

@@ -14,23 +14,24 @@ function NoneUserBoardReadForm() {
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
     const commentContentRef = useRef(null);
-    const [boardWriterId, setBoardWriterId] = useState(null); 
+    const [boardWriterName, setBoardWriterName] = useState(null); 
 
     let likeCountNumber;
     let disLikeCountNumber;
     let boardId;
-    let sessionId;
+    const [sessionId, setSessionId] = useState([]);
     const [stompClient, setStompClient] = useState(null);
 
     let isAddCommentClick = false;
     let allCommentId = 1;
     // let domainUri = "http://27.96.131.120:8080";
-    let domainUri = "/api";
+    let domainUri = process.env.REACT_APP_API_URL;
     // let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
     
     useEffect(() => {
         setUrl().then(function(data) {
-            sessionId = data;
+            alert("sessionId = "+data);
+            setSessionId(data);
         }).then(function() {
             connect();
             x();
@@ -59,21 +60,24 @@ function NoneUserBoardReadForm() {
         return boardId;
     }
     function isUser(commentWriter) {
-
-        if(boardWriterId.includes("_")) {
+        alert("isJustUser "+boardWriterName.includes("_"));
+        if(boardWriterName.includes("_")) {
             return true;
         }
+        alert("it is not Just User");
         return isAdmin(commentWriter);
     }
     function isAdmin(userId) {
+        
         let data= {
             method: "GET",
             credentials: "include"
         };
-        return fetch("/check/admin/"+userId,data).then(function (res) {
+        fetch(domainUri+"/check/admin/"+userId,data).then(function (res) {
+            alert("??");
             return res.text();
         }).then(function(res){
-            console.log(res);
+            alert("isAdmin: "+res);
             if(res==true) {
                 return true;
             }
@@ -83,25 +87,27 @@ function NoneUserBoardReadForm() {
     function setAlarmData(boardId,summaryCommentContent,commentWriter) {
 
         if (isUser(commentWriter)) {
-            return setUserAlarmData(boardId,summaryCommentContent,commentWriter);
+            return setCommentUserAlarmData(boardId,summaryCommentContent,commentWriter);
         }
         else {
-            return setNoneUserAlarmData(boardId,summaryCommentContent,commentWriter);
+            return setCommentNoneUserAlarmData(boardId,summaryCommentContent,commentWriter);
         }
     
     }   
-    function setNoneUserAlarmData(boardId,summaryCommentContent,commentWriter) {
+
+    // 게시글 작성자가 비유저인 경우
+    function setCommentNoneUserAlarmData(boardId,summaryCommentContent,commentWriter) {
         let alarmData = {
             method: "POST",
             headers: {
-                Accept: "application/json",
+                // Accept: "application/json",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 "boardId": boardId,
                 "summaryCommentContent": summaryCommentContent,
                 "userName" : commentWriter,
-                "commentWriter":sessionId,
+                "boardWriterId":sessionId,
                 "isVisited" : false,
             }),
             credentials: "include"
@@ -110,15 +116,17 @@ function NoneUserBoardReadForm() {
             return response.text();
         })
     }
-    function setUserAlarmData(boardId,summaryCommentContent,commentWriter) {
+    // 게시글 작성자가 유저인 경우
+    function setCommentUserAlarmData(boardId,summaryCommentContent,commentWriter) {
         let alarmData = {
             method: "POST",
             headers: {
                 Accept: "application/json",
-                "Content-Type": "application/json"
+                // "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 "boardId": boardId,
+                "boardWriterName" : boardWriterName,
                 "summaryCommentContent": summaryCommentContent,
                 "commentWriter" : commentWriter,
                 "isVisited" : false
@@ -150,8 +158,8 @@ function NoneUserBoardReadForm() {
         let data = {
             method: "POST",
             headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+                  // Accept: "application/json",
+                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
             "userId":usernameRef.current.textContent,
@@ -162,9 +170,12 @@ function NoneUserBoardReadForm() {
 
     }
 
-    fetch(url,data).then(function x(response){
-        return response.json();
-    }).then(function(data) {
+    fetch(url,data) .then(function(response) {
+        if (!response.ok) {
+          console.log("Network response was not ok");
+        }
+        return response.text();
+      }).then(function(data) {
         //"http://localhost:8080/boards"+boardId;
         // 알림 서비스 추가
 
@@ -211,8 +222,8 @@ function x() {
     let requestData = {
         method: "GET",
         headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
+            // Accept: "application/json",
+            // "Content-Type": "application/json"
         },
         credentials: "include"
     }
@@ -226,7 +237,7 @@ function x() {
             return response.json();
         })
         .then(function (datas) {
-            setBoardWriterId(datas["boardWriterId"]);
+            setBoardWriterName(datas["boardWriterName"]);
             content = datas["contents"];
             likeCountNumber = datas['likeCount'];
             disLikeCountNumber = datas["disLikeCount"];
@@ -309,8 +320,8 @@ function updateLikeCount() {
     let data ={
         method: "PUT",
         headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
+            // Accept: "application/json",
+            // "Content-Type": "application/json"
         },
         body: JSON.stringify({
             "joinStatusId": boardId,
@@ -332,7 +343,7 @@ function updateDisLikeCount() {
         method: "PUT",
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            // "Content-Type": "application/json"
         },
         body: JSON.stringify({
             "joinStatusId": boardId

@@ -16,7 +16,7 @@ function Alarm() {
   // api 받을 때 setBoards로 교체하면 될듯 
     const [condition, setCondition] = useState(true);
     // let domainUri = "http://localhost:8080";
-    let domainUri = "/api";
+    let domainUri = process.env.REACT_APP_API_URL;
     // let domainUri = "https://www.siteproject22.online";
     let sessionId;
     let boardQuantity;
@@ -163,11 +163,13 @@ function Alarm() {
         let idData = (pageQuantity - 1) * boardQuantity + 1;
         let currentSize = 1;
         let boardSize = 1;
-    
+        alert("alarm - data 가져오기");
         fetch(domainUri+"/alarm/data/"+pageQuantity, data).then(function (response) {
             return response.json();
         }).then(function (data) {
+          alert("data = "+data);
           if(data.length>0) {
+            
             setBoards(data);
           }
           }).then(function() {
@@ -242,41 +244,43 @@ function Alarm() {
       </div>
       <section id={styles.section}>
         <div className={styles.bodyHeader}>
-        <article id="article">
-            <table id="table">
-                <thead id="thead">
-                    <th className={styles.thId}>게시판 id</th>
-                    <th className={styles.thTitle}>게시판 이름</th>
-                    <th className={styles.thAuthor}>댓글 유저 이름</th>
-                    <th className={styles.thContent}>댓글 내용</th>
-                </thead>
-                <tbody id="tbody">
+          <article id={styles.article}>
+            <table id={styles.table}>
+              <thead id={styles.thead}>
+                <tr>
+                  <th className={styles.thId}>게시판 id</th>
+                  <th className={styles.thTitle}>게시판 이름</th>
+                  <th className={styles.thAuthor}>댓글 유저 이름</th>
+                  <th className={styles.thContent}>댓글 내용</th>
+                </tr>
+              </thead>
+              <tbody id={styles.tbody}>
                 {boards.map((board, index) => (
-                    <tr key={index} onClick= {() =>window.location.href="/boards/"+board.boardId}>
-                        <td className={styles.thId}>{board.id}</td>
-                        <td className={styles.thTitle}>{board.title}</td>
-                        <td className={styles.thAuthor}>{board.boardWriterId}</td>
-                        <td className={styles.thContent}>{board.summaryCommentContent}</td>
-                </tr>))}
+                  <tr key={index} onClick= {() =>window.location.href="/boards/"+board.boardId}>
+                    <td className={styles.thId}>{board.id}</td>
+                    <td className={styles.thTitle}>{board.title}</td>
+                    <td className={styles.thAuthor}>{board.boardWriterId}</td>
+                    <td className={styles.thContent}>{board.summaryCommentContent}</td>
+                  </tr>))}
                 </tbody>
             </table>
-        </article>
+          </article>
         </div>
         <div className={styles.container2}>
           <div className={styles.itema} id={styles.item1} onClick={moveFirstPage}>처음</div>
           <div className={styles.itema} id={styles.item} onClick={movePreviousPage}>이전</div>
           {pageNumbers.map((pageNumber) => (
-        <div className={`${styles.itema} ${styles.appear}`}  key={pageNumber} onClick={setPageUrl}>
-          {pageNumber}
-        </div>
-        ))}
-      {nonePageNumbers.map((nonePageNumber) => (
-        <div className={`${styles.itema} ${styles.disappear}`}  key={nonePageNumber}>
-          {nonePageNumber}
-        </div>
-      ))}
-      <div className={pageClassName} onClick={moveNextPage}>다음</div>
-      <div className={pageClassName} onClick={moveFinalPage}>마지막</div>
+          <div className={`${styles.itema} ${styles.appear}`}  key={pageNumber} onClick={setPageUrl}>
+            {pageNumber}
+          </div>
+          ))}
+          {nonePageNumbers.map((nonePageNumber) => (
+            <div className={`${styles.itema} ${styles.disappear}`}  key={nonePageNumber}>
+              {nonePageNumber}
+            </div>
+          ))}
+          <div className={pageClassName} onClick={moveNextPage}>다음</div>
+          <div className={pageClassName} onClick={moveFinalPage}>마지막</div>
         </div>
 
       </section>

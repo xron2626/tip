@@ -5,7 +5,7 @@ import UserBoardReadForm from "./UserBoardReadForm";
 function BoardReadForm() {
     const [isUserAccount, setIsUserAccount] = useState(null);
     // let domainUri = "http://27.96.131.120:8080";
-    let domainUri = "/api";
+    let domainUri = process.env.REACT_APP_API_URL;
     // let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
     useEffect(() => {
         getUserAccount();
@@ -14,8 +14,8 @@ function BoardReadForm() {
         let params = {
             method: "get",
             headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+                // Accept: "application/json",
+                // "Content-Type": "application/json"
             },
             credentials: "include" // 이 옵션을 설정해야 쿠키가 요청에 포함됨
 

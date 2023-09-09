@@ -16,7 +16,7 @@ function Search() {
     // api 받을 때 setBoards로 교체하면 될듯 
     const [condition, setCondition] = useState(true);
     // let domainUri = "http://27.96.131.120:8080";
-    let domainUri = "/api";
+    let domainUri = process.env.REACT_APP_API_URL;
   //  let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
   
     const onChangeKeyword = (event) => {
