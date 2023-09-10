@@ -67,7 +67,7 @@ function Search() {
       console.log(stompClient);
       stompClient.connect({}, function(frame) {
           console.log('Connected: ' + frame);
-          stompClient.subscribe(domainUri+'/user/'+sessionId+'/queue/messages', function(message) {
+          stompClient.subscribe('/user/'+sessionId+'/queue/messages', function(message) {
               alert("새로운 글이 작성되었습니다");
           });
       });
@@ -77,7 +77,7 @@ function Search() {
       let stompClient2 = Stomp.over(socket2);
       stompClient2.connect({}, function(frame) {
           console.log('Connected: ' + frame);
-          stompClient2.subscribe(domainUri+'/user/'+sessionId+'/queue/messages2', function(message) {
+          stompClient2.subscribe('/user/'+sessionId+'/queue/messages2', function(message) {
               alert("새로운 글이 작성되었습니다2");
           });
       });

@@ -2,59 +2,33 @@
 
 import styles from "./NoneUserBoardReadForm.module.css"
 import React, { useRef,useEffect, useState } from 'react';
-import SockJS from 'sockjs-client';
-import {Stomp} from '@stomp/stompjs';
-function NoneUserBoardReadForm() {
-    const [commentList, setCommentList] = useState([]);
 
-    const [disLikeCount, setDisLikeCount] = useState('0'); 
-    const [likeCount, setLikeCount] = useState('0'); 
-    const [boardContent, setBoardContent] = useState(); 
+function NoneUserBoardReadForm({sessionId,setSessionId,boardWriterName,likeCount,setLikeCount,disLikeCount,setDisLikeCount,boardContent,stompClient,commentList}) {
+    
+
+    
     const [text, setText] = useState('이름'); // 텍스트 상태 설정
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
     const commentContentRef = useRef(null);
-    const [boardWriterName, setBoardWriterName] = useState(null); 
+    
 
-    let likeCountNumber;
-    let disLikeCountNumber;
+    
     let boardId;
-    const [sessionId, setSessionId] = useState([]);
-    const [stompClient, setStompClient] = useState(null);
+    
 
-    let isAddCommentClick = false;
-    let allCommentId = 1;
+
+    
+    
     // let domainUri = "http://27.96.131.120:8080";
     let domainUri = process.env.REACT_APP_API_URL;
     // let domainUri = "https://port-0-java-springboot-17xqnr2algm9dni8.sel3.cloudtype.app";
     
-    useEffect(() => {
-        setUrl().then(function(data) {
-            alert("sessionId = "+data);
-            setSessionId(data);
-        }).then(function() {
-            connect();
-            x();
-        })
-    },[])
+    
 
     const handleTextChange = (e) => {
       setText(e.target.value); // 텍스트 변경 시 상태 업데이트
     };
-    function setUrl() {
-        boardId = getBoardId();
-        let url = domainUri+"/board/uuid?boardId="+boardId;
-        console.log(url);
-        let accountData = {
-            "method" : "GET",
-            credentials: "include"
-        }
-        
-    
-        return fetch(url,accountData).then(function findUsername(response) {
-            return response.text();
-        });
-    }
     function getBoardId() {
         boardId = window.location.href.split("/boards/")[1];
         return boardId;
@@ -143,7 +117,7 @@ function NoneUserBoardReadForm() {
         let data = {
             message:"update"
         }
-        
+        alert("stomp send sessionId = "+sessionId);
         stompClient.send("/app/send-message-to-user", {"sessionId":sessionId},JSON.stringify(data));
 
         return setAlarmData(boardId,summaryCommentContent,commentWriter)
@@ -178,10 +152,9 @@ function NoneUserBoardReadForm() {
       }).then(function(data) {
         //"http://localhost:8080/boards"+boardId;
         // 알림 서비스 추가
-
-       return sendMessage(boardId,commentContentRef.current.value,usernameRef.current.textContent);
+        
     }).then(function() {
-
+        return sendMessage(boardId,commentContentRef.current.value,usernameRef.current.textContent);
     });
     // console.log(isAddCommentClick);
     // return isAddCommentClick;
@@ -193,126 +166,8 @@ function NoneUserBoardReadForm() {
         commentContentRef.current.style.height = (12+commentContentRef.current.scrollHeight)+"px";
     }
   
-    function connect() {
-        const socket = new SockJS(domainUri+'/my-websocket-endpoint');
-        const client = Stomp.over(socket);
-
-        client.connect({}, function(frame) {
-            console.log('Connected: ' + frame);
-            // client.subscribe('ws://http://localshot:8080/user/'+sessionId+'/queue/messages', function(message) {
-            client.subscribe(domainUri + '/user/'+sessionId+'/queue/messages', function(message) {
-                alert("새로운 글이 작성되었습니다");
-            });
-        });
-        setStompClient(client);
-
-      }
 
 
-function x() {
-    let hrefArrays = document.location.href.split("boards/");
-    let borderNumber = hrefArrays[1];
-    let content;
-    let form = document.createElement('div');
-    form.setAttribute('method', 'post'); //POST 메서드 적용
-    let url = domainUri+"/boards/"+borderNumber+"/data";
-    // form.setAttribute('action', url);	// 데이터를 전송할 url
-    // json 리다이렉트 vs form 전송 받기 근데 이경우는 form 이동으로 해버리면 로직이 되게 복잡해짐
-  
-    let requestData = {
-        method: "GET",
-        headers: {
-            // Accept: "application/json",
-            // "Content-Type": "application/json"
-        },
-        credentials: "include"
-    }
-    fetch(url, requestData)
-        .then(function (response) {
-            //  console.log(response.json());
-            if(response.status===500) {
-                throw new Error("데이터 없음");
-            }
-            // alert("저장되었습니다");
-            return response.json();
-        })
-        .then(function (datas) {
-            setBoardWriterName(datas["boardWriterName"]);
-            content = datas["contents"];
-            likeCountNumber = datas['likeCount'];
-            disLikeCountNumber = datas["disLikeCount"];
-        }).then(function() {
-        setBoardContent(content);
-        setLikeCount(likeCountNumber);
-        setDisLikeCount(disLikeCountNumber);
-        return;
-
-    }).catch(function (e) {
-        console.log(e);
-
-    });
-
-    // let commentSubmitButtons = document.getElementsByClassName("parentCommentSubmitArea");
-
-    if(isAddCommentClick === false) {
-        addComment(isAddCommentClick);
-        isAddCommentClick = true;
-    }
-    
-
-
-}
-
-function addComment(isAddCommentClick) {
-    // fetch 전송 하고
-    // 뒤에 데이터 받게 하기
-    let commentGroup;
-    let boardId = document.location.href.split("boards/")[1];
-    let userName;
-
-    let readComment;
-    let comment;
-    let name;
-    let textarea;
-    let commentId = 1;
-
-    let url = domainUri+"/comment/"+boardId+"?startId="+allCommentId;
-    let data= {
-        method: 'get', // 통신할 방식
-        credentials: 'include'
-    }
-    fetch(url,data).then(function (response) {
-        return response.json();
-    }).then(function (x) {
-        console.log(x);
-        x.some(obj => {
-            let newItem = {
-                content: '새로운 내용',
-                username: '새로운 유저',
-            };
-            Object.entries(obj)
-                .forEach(([key, value]) => {      
-                    if(commentId==11) {
-                        return;
-                    }
-                    if (key === "userName") {
-                        newItem.username = value;
-                    } else if (key === "content") {
-                        newItem.content = value;
-                    }
-                })
-            if(commentId===11) {
-                return;
-            }
-            setCommentList(prevList => [...prevList, newItem]);
-
-        })
-        console.log("?"+commentId);
-
-    });
-
-
-}
 
 function updateLikeCount() {
     let url = domainUri+"/board/like";

@@ -1,6 +1,7 @@
 import { useRef,useState,useEffect } from "react";
 import NoneUserBoardReadForm  from "./NoneUserBoardReadForm";
 import UserBoardReadForm from "./UserBoardReadForm";
+import LoadSessionForm from "./LoadSessionForm";
 
 function BoardReadForm() {
     const [isUserAccount, setIsUserAccount] = useState(null);
@@ -45,7 +46,7 @@ function BoardReadForm() {
     }
     return(
         <div>
-        {isUserAccount === null ? (<div>Loading...</div>) : isUserAccount === "비회원" ? (<NoneUserBoardReadForm />) : 
+        {isUserAccount === null ? (<div>Loading...</div>) : isUserAccount === "비회원" ? (<LoadSessionForm />) : 
         isUserAccount === "OAUTH 유저" ? (  <UserBoardReadForm/>) : (  <div >{isUserAccount}</div>)}
       </div>
     )

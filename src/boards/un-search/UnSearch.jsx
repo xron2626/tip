@@ -38,6 +38,7 @@ function UnSearch() {
 
   useEffect(() => {
     setUrl().then(function(data) {
+      alert("sessionId = "+data);
       connect(data);
     })
   }, []);
@@ -47,7 +48,9 @@ function UnSearch() {
   const setUrl = () => {
     let url = domainUri+"/user-noneuser/account";
     let accountData = {
-        "method" : "GET"
+        "method" : "GET",
+        credentials: 'include'
+        
     }
     return fetch(url,accountData).then(function findUsername(response) {
         return response.text();
@@ -58,13 +61,15 @@ function UnSearch() {
     window.location.href = "/?pageQuantity="+e.target.textContent+"&boardQuantity="+boardQuantity;
   }
   function connect(sessionId) {
-    const socket = new SockJS(domainUri+'/my-websocket-endpoint');
+    const socket = new SockJS('http://localhost:8080/my-websocket-endpoint/');
+    
     let stompClient = Stomp.over(socket);
-    console.log(socket);
-    console.log(stompClient);
+    console.log("socket= "+socket);
+    console.log("stompClient= "+stompClient);
     stompClient.connect({}, function(frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe(domainUri+'/user/'+sessionId+'/queue/messages', function(message) {
+        alert("stompClient.suscribe sessionId = "+sessionId)
+        stompClient.subscribe('/user/'+sessionId+'/queue/messages', function(message) {
             alert("새로운 글이 작성되었습니다");
         });
     });
@@ -74,7 +79,8 @@ function UnSearch() {
     let stompClient2 = Stomp.over(socket2);
     stompClient2.connect({}, function(frame) {
         console.log('Connected: ' + frame);
-        stompClient2.subscribe(domainUri+'/user/'+sessionId+'/queue/messages2', function(message) {
+        alert("stompClient2.suscribe sessionId = "+sessionId)
+        stompClient2.subscribe('/user/'+sessionId+'/queue/messages2', function(message) {
             alert("새로운 글이 작성되었습니다2");
         });
     });
