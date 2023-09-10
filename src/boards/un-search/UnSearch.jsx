@@ -61,7 +61,7 @@ function UnSearch() {
     window.location.href = "/?pageQuantity="+e.target.textContent+"&boardQuantity="+boardQuantity;
   }
   function connect(sessionId) {
-    const socket = new SockJS('http://localhost:8080/my-websocket-endpoint/');
+    const socket = new SockJS(domainUri+'/my-websocket-endpoint/');
     
     let stompClient = Stomp.over(socket);
     console.log("socket= "+socket);
